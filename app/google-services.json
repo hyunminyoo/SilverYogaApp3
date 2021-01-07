@@ -15,6 +15,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "332348830900-asrkdlumgr32cjvs5bd6o1209fqe6g2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.growin.silveryogaapp",
+            "certificate_hash": "45538dcd1feba3ac2f4f9d6dedf3c3148b0f0817"
+          }
+        },
+        {
+          "client_id": "332348830900-chde0ra5pihnuh7fqf4pkg8enjh923rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.growin.silveryogaapp",
+            "certificate_hash": "c6b9eeccda978e866d8459db94dcbcd143e700e3"
+          }
+        },
+        {
+          "client_id": "332348830900-i58dbd4uv8o9gsepkn8v1h83jar8d3eb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.growin.silveryogaapp",
+            "certificate_hash": "e31a264a27a5a03ecece42d60f1010d13ae35f4b"
+          }
+        },
+        {
+          "client_id": "332348830900-rf0iet2gg0f4klvn7j4cu5gosjc07668.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.growin.silveryogaapp",
+            "certificate_hash": "440965ce62d92edbbfbcdd6e8e27c84fa6a50b43"
+          }
+        },
+        {
           "client_id": "332348830900-il95vdulmv3r611piraiuokt7papdhgt.apps.googleusercontent.com",
           "client_type": 3
         }
