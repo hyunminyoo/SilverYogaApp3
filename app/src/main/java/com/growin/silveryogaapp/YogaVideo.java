@@ -71,6 +71,8 @@ public class YogaVideo extends YouTubeBaseActivity {
 
         //Webview for checking pose accuracy
         WebView myWebView = (WebView) findViewById(R.id.webView);
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
 
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setAllowFileAccessFromFileURLs(true);
