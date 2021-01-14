@@ -65,9 +65,7 @@ public class YogaVideo extends YouTubeBaseActivity {
         playerView = findViewById(R.id.youtubeView);
 
         //WEBVIEW 할일 정리
-        //웹뷰를 다른 형식으로 만들어서 카메라 사용 가능하게 하기. (WebChromeClient 어떠한가.. stackoverflow 참조)
-        //카메라 사용 가능해지면 모바일상 인식 확인하고 속도랑 효율 확인하기
-        //효율까지 확인 되면 자세 하나 골라서 teachable machine에 입력하기
+
         //동작 인식 기능이 모바일에서 완벽하게 구현되면, 동영상이 플레이 되는 시간이나 순서에 맞게 인식하는 방법 찾기.
         //그리고 영상 순서에 맞게 재생하고 인식할 수 있게 된다면, 퍼센트로 나오는 대신 더 재밌는 문구 찾아보기. 그리고 화면 인식보다 모션 인식을 위로 올리기.
 
