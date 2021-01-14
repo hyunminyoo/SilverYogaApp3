@@ -1,7 +1,10 @@
 package com.growin.silveryogaapp;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.PermissionRequest;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -42,8 +45,8 @@ public class YogaVideo extends YouTubeBaseActivity {
     private String pName;
     private int stateFavorit;
 
-    private WebView mWebView; // 웹뷰 선언
-    private WebSettings mWebSettings;
+    private WebView myWebView; // 웹뷰 선언
+    private WebSettings myWebSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,26 +64,37 @@ public class YogaVideo extends YouTubeBaseActivity {
         likeBtn = findViewById(R.id.likeBtn);
         playerView = findViewById(R.id.youtubeView);
 
+        //WEBVIEW 할일 정리
+        //웹뷰를 다른 형식으로 만들어서 카메라 사용 가능하게 하기. (WebChromeClient 어떠한가.. stackoverflow 참조)
+        //카메라 사용 가능해지면 모바일상 인식 확인하고 속도랑 효율 확인하기
+        //효율까지 확인 되면 자세 하나 골라서 teachable machine에 입력하기
+        //동작 인식 기능이 모바일에서 완벽하게 구현되면, 동영상이 플레이 되는 시간이나 순서에 맞게 인식하는 방법 찾기.
+        //그리고 영상 순서에 맞게 재생하고 인식할 수 있게 된다면, 퍼센트로 나오는 대신 더 재밌는 문구 찾아보기. 그리고 화면 인식보다 모션 인식을 위로 올리기.
 
         //Webview for checking pose accuracy
-        mWebView = (WebView) findViewById(R.id.webView);
+        WebView myWebView = (WebView) findViewById(R.id.webView);
 
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setAllowFileAccessFromFileURLs(true);
+        myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
+        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebChromeClient(new WebChromeClient() {
+            // Grant permissions for cam
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                final String[] requestedResources = request.getResources();
+                for (String r : requestedResources) {
+                    if (r.equals(PermissionRequest.RESOURCE_VIDEO_CAPTURE)) {
+                        request.grant(new String[]{PermissionRequest.RESOURCE_VIDEO_CAPTURE});
+                        break;
+                    }
+                }
+            }
 
-        mWebView.setWebViewClient(new WebViewClient()); // 클릭시 새창 안뜨게
-        mWebSettings = mWebView.getSettings(); //세부 세팅 등록
-        mWebSettings.setJavaScriptEnabled(true); // 웹페이지 자바스클비트 허용 여부
-        mWebSettings.setSupportMultipleWindows(false); // 새창 띄우기 허용 여부
-        mWebSettings.setJavaScriptCanOpenWindowsAutomatically(false); // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
-        mWebSettings.setLoadWithOverviewMode(true); // 메타태그 허용 여부
-        mWebSettings.setUseWideViewPort(true); // 화면 사이즈 맞추기 허용 여부
-        mWebSettings.setSupportZoom(false); // 화면 줌 허용 여부
-        mWebSettings.setBuiltInZoomControls(false); // 화면 확대 축소 허용 여부
-        mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); // 컨텐츠 사이즈 맞추기
-        mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
-        mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
+        });
 
-        mWebView.loadUrl("https://silversquat.netlify.app/"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        myWebView.loadUrl("https://silversquat.netlify.app/"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
 
 
 
